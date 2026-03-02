@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magical Love Diary</title>
+
+<style>
+body{
+margin:0;
+font-family:'Comic Sans MS', cursive;
+background:linear-gradient(45deg,#ff9ec4,#ffd6ec,#ffc3a0,#ffafbd);
+background-size:400% 400%;
+animation:bg 10s infinite alternate;
+overflow:hidden;
+}
+
+@keyframes bg{
+0%{background-position:left;}
+100%{background-position:right;}
+}
+
+.heart{
+position:fixed;
+top:-10px;
+color:#ff2e63;
+animation:fall linear forwards;
+}
+
+@keyframes fall{
+to{transform:translateY(100vh); opacity:0;}
+}
+
+.center{
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+flex-direction:column;
+text-align:center;
+color:white;
+padding:20px;
+}
+
+button{
+padding:12px 25px;
+font-size:18px;
+border:none;
+border-radius:20px;
+background:#ff4d88;
+color:white;
+margin-top:15px;
+cursor:pointer;
+box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+
+input{
+padding:10px;
+font-size:18px;
+border-radius:15px;
+border:none;
+text-align:center;
+}
+
+.hidden{display:none;}
+
+.page{
+display:none;
+animation:fade 1s;
+}
+
+@keyframes fade{
+from{opacity:0; transform:scale(0.8);}
+to{opacity:1; transform:scale(1);}
+}
+
+h1{
+font-size:38px;
+text-shadow:2px 2px 5px black;
+}
+
+.big{
+font-size:24px;
+margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOCK -->
+<div id="lock" class="center">
+<h1>🔐 Secret Love Lock 🔐</h1>
+<input type="password" id="pass" placeholder="Enter Password">
+<button onclick="check()">Unlock 💖</button>
+<p id="wrong"></p>
+</div>
+
+<!-- WELCOME -->
+<div id="welcome" class="center hidden">
+<h1>Welcome My World 💕</h1>
+<p class="big">Preparing your magical surprise... ⏳</p>
+</div>
+
+<!-- GIFT -->
+<div id="gift" class="center hidden">
+<h1>🎁 Tap to Open 🎁</h1>
+<button onclick="openDiary()">Open 💝</button>
+</div>
+
+<!-- PAGES -->
+
+<div id="page1" class="center page hidden">
+<h1>🌷 My Tulip 🌷</h1>
+<p class="big">You bloom in my life like the softest flower 🌸</p>
+<button onclick="next(2)">Next ➡</button>
+</div>
+
+<div id="page2" class="center page hidden">
+<h1>😡 Cute Anger 😡</h1>
+<p class="big">She gets angry quickly… but even in her anger, she looks the most beautiful girl in my world 💕</p>
+<button onclick="next(3)">Next ➡</button>
+</div>
+
+<div id="page3" class="center page hidden">
+<h1>🌙 Night Line 🌙</h1>
+<p class="big">I always fall asleep smiling… because I see you before I close my eyes 💞</p>
+<button onclick="next(4)">Next ➡</button>
+</div>
+
+<div id="page4" class="center page hidden">
+<h1>💫 My Forever 💫</h1>
+<p class="big">My forever started the day you walked into my life ❤️</p>
+<button onclick="next(5)">Next ➡</button>
+</div>
+
+<div id="page5" class="center page hidden">
+<h1>💖 My Promise 💖</h1>
+<p class="big">Even on your worst days… I will still choose you 🥺💘</p>
+<button onclick="next(6)">Next ➡</button>
+</div>
+
+<div id="page6" class="center page hidden">
+<h1>💌 Final Page 💌</h1>
+<p class="big">This diary ends here… but my love story with you never will ♾💗</p>
+</div>
+
+<script>
+function check(){
+var p=document.getElementById("pass").value;
+if(p==="Tushar77"){
+document.getElementById("lock").classList.add("hidden");
+document.getElementById("welcome").classList.remove("hidden");
+setTimeout(function(){
+document.getElementById("welcome").classList.add("hidden");
+document.getElementById("gift").classList.remove("hidden");
+},5000);
+}else{
+document.getElementById("wrong").innerHTML="❌ Wrong Password!";
+}
+}
+
+function openDiary(){
+document.getElementById("gift").classList.add("hidden");
+document.getElementById("page1").classList.remove("hidden");
+}
+
+function next(n){
+var current = event.target.parentElement.id;
+document.getElementById(current).classList.add("hidden");
+document.getElementById("page"+n).classList.remove("hidden");
+}
+
+/* Falling Hearts */
+setInterval(function(){
+var heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="💖";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(Math.random()*20+15)+"px";
+heart.style.animationDuration=(Math.random()*3+2)+"s";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),5000);
+},300);
+</script>
+
+</body>
+</html>
